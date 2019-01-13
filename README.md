@@ -4,7 +4,7 @@
 We kept falling asleep in class, twas very bad...
 
 **What it does:**
-When our nifty device detects that you have fallen asleep, it YELLS at you. Better wake up!
+When our nifty device detects that you have fallen asleep, it YELLS at you. Better wake up!  
 **_Pencil Version_**
 The pencil version has a button to turn on the device. If it detects that you have fallen asleep, it first starts vibrating as a gentle reminder to wake up. If you still don't wake up, then it starts beeping at you.  
 **_Computer Version_** 
