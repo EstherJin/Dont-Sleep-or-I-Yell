@@ -8,12 +8,14 @@ import tkinter as tk
 import PIL
 from PIL import Image, ImageTk
 
+
 previousTime = 0
 currentTime = 1
 counter = 0
 on = False
 
 
+# is_awake() checks if the user is idle and tracks idle time
 def is_awake():
     global counter
     previousTime = 0
@@ -21,33 +23,39 @@ def is_awake():
         if on:
             currentTime = win32api.GetLastInputInfo()
             if (previousTime == currentTime):
-                counter += 1
+                counter += 0.2
             else:
                 counter = 0
-            #print(counter)
             previousTime = currentTime
-            time.sleep(1)
+            time.sleep(0.2)
 
+
+# awakening() opens a message box when the user has been idle for 2 mins
 def awakening():
     while True:
         if on:
             time.sleep(1)
             #print("awakening counter: " + str(counter))
             if counter > 120:
-                #print("hello")
                 ctypes.windll.user32.MessageBoxW(0, "WAKE UP", "WAKE UPPPPP", 0)
 
 
+# seriously_wake_up() plays an alarm when the user has been idle for 2.5 mins
 def seriously_wake_up():
+    global counter
     while True:
         if on:
-            time.sleep(1)
-            #print("wake up counter: " + str(counter))
-            if counter > 150:
-                #print("get those earplugs")
-                winsound.Beep(1500, 1000)           
+            timer = 1
+            timercounter = 1
+            while counter > 150:
+                winsound.Beep(1500, max(1000-timercounter // 5*100, 200))
+                time.sleep(timer)
+                if timer > 0.20:
+                    timer = 1 -  (timercounter // 5) * 0.21
+                    timercounter += 1
 
 
+# toggle() controls the button on the GUI
 def toggle():
     global on
     if t_btn.config('text')[-1] == 'Turn Off':
@@ -58,7 +66,6 @@ def toggle():
         on = True
         
 
-    #print(on)
 
 root = tk.Tk()
 root.configure(background = '#cce5ff')
@@ -77,6 +84,5 @@ p2 = Thread(target = awakening)
 p3 = Thread(target = seriously_wake_up)
 
 p1.start()
-#print("p1")
 p2.start()
 p3.start()
