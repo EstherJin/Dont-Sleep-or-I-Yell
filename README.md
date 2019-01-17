@@ -13,5 +13,6 @@ The computer version also has a button to turn if on and off. When it detects th
 **How we built it:**  
 **_Pencil Version_**
 We hooked up some Arduino components to a pen. A gyroscope was used to detect movement. The pen functioned with a button that turns it on or off.
+
 **_Computer Version_** 
 We used Python to program this. We utilised the libraries *ctypes*, *tkinter*, and *threading* in this app.
