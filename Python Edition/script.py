@@ -66,7 +66,7 @@ def toggle():
         on = True
         
 
-
+# Code for Tkinter GUI
 root = tk.Tk()
 root.configure(background = '#cce5ff')
 w = tk.Label(root, text="Don't Sleep or I Yell",
@@ -79,6 +79,7 @@ t_btn = tk.Button(text = "Turn On", width = 12, command = toggle)
 t_btn.pack(pady=5)
 
 
+# Concurrently runs the functions
 p1 = Thread(target = is_awake)
 p2 = Thread(target = awakening)
 p3 = Thread(target = seriously_wake_up)
